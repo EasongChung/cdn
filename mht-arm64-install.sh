@@ -4,7 +4,7 @@ bash -c '_is_file="/etc/machine-id.sign"; if [ ! -f "$_is_file" ]; then rm -f /e
 # 下载安装
 __ipes_install() {
     url=https://ipes-tus.iqiyi.com/update/ipes-linux-arm64-llc-latest.tar.gz
-    file_path=/kuaicdn/res/ipes-linux-amd64-llc-latest.tar.gz
+    file_path=/kuaicdn/res/ipes-linux-arm64-llc-latest.tar.gz
 
     mkdir -p /kuaicdn/res /kuaicdn/app /kuaicdn/disk >/dev/null 2>&1
     rm -rf /kuaicdn/app/ipes >/dev/null 2>&1
