@@ -35,6 +35,8 @@ J2,http://2022.stream-link.org/live/1869661640
 香港開電視,http://2022.stream-link.org/live/322793772
 香港開電視資訊台,http://2022.stream-link.org/live/237166685
 香港國際財經台,http://2022.stream-link.org/live/1737572864
+鳳凰資訊台,http://2022.stream-link.org/live/1770675188
+鳳凰中文台,http://2022.stream-link.org/live/322460831
 ABC News Australia,http://2022.stream-link.org/live/913166695
 ABC News,http://2022.stream-link.org/live/1465379655
 ANN News,http://2022.stream-link.org/live/1443099587
@@ -47,6 +49,7 @@ GB News,http://2022.stream-link.org/live/952053531
 Haber Turk,http://2022.stream-link.org/live/407816023
 NBC News,http://2022.stream-link.org/live/1630575726
 SKY News,http://2022.stream-link.org/live/127064321
+
 
 東森新聞,http://2023.stream-link.org/live/1793825065
 東森財經新聞,http://2023.stream-link.org/live/249006034
