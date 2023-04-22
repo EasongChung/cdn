@@ -7,6 +7,9 @@
 凤凰资讯,http://120.84.96.82:808/hls/28/index.m3u8
 凤凰卫视,http://120.84.96.82:808/hls/29/index.m3u8        
 凤凰资讯,http://111.59.189.40:8445/tsfile/live/1021_1.m3u8
+凤凰资讯,http://[2409:8087:3869:8021:1001::e5]:6610/PLTV/88888910/224/3221226274/index.m3u8
+凤凰卫视,http://[2409:8087:3869:8021:1001::e5]:6610/PLTV/88888910/224/3221226248/index.m3u8
+凤凰香港,http://[2409:8087:5011:1020::1f]/180000001001/00000001000000000002000000027983/main.m3u8?IASHttpSessionId=OTT
 香港卫视,http://zhibo.hkstv.tv/livestream/mutfysrq/playlist.m3u8
 香港卫视,http://zhibo.hkstv.tv/livestream/mutfysrq.flv
 俄罗斯中文,http://brics.bonus-tv.ru/cdn/brics/chinese/tracks-v1a1/index.m3u8
