@@ -18,7 +18,6 @@ TVBS新闻,http://pull-l3-cny.douyincdn.com/third/stream-e6b6ef594c30eb3f3de0fa4
 东森电影高清,http://120.84.96.87:808/hls/32/index.m3u8
 东森洋片高清,http://120.84.96.87:808/hls/33/index.m3u8
 民视,http://120.84.96.87:808/hls/34/index.m3u8
-信吉台,http://119.125.129.118:9901/tsfile/live/1074_1.m3u8
 龙翔时代,http://120.84.96.87:808/hls/35/index.m3u8
 天映经典GCM,http://120.84.96.87:808/hls/85/index.m3u8
 
