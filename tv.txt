@@ -14,8 +14,6 @@
 香港卫视,http://zhibo.hkstv.tv/livestream/mutfysrq.flv
 俄罗斯中文,http://brics.bonus-tv.ru/cdn/brics/chinese/tracks-v1a1/index.m3u8
 新加坡国际,https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index_4.m3u8
-TVBS新闻,http://pull-l3-cny.douyincdn.com/third/stream-e6b6ef594c30eb3f3de0fa4ba0ce86e6.m3u8
-无线新闻,https://pull-l3-cny.douyincdn.com/live/stream-112175tvb1202212213.m3u8
 私人影院,http://119.125.129.118:9901/tsfile/live/1011_1.m3u8
 好莱坞电影,http://120.84.96.87:808/hls/24/index.m3u8
 东森电影高清,http://120.84.96.87:808/hls/32/index.m3u8
@@ -24,54 +22,54 @@ TVBS新闻,http://pull-l3-cny.douyincdn.com/third/stream-e6b6ef594c30eb3f3de0fa4
 龙翔时代,http://120.84.96.87:808/hls/35/index.m3u8
 天映经典GCM,http://120.84.96.87:808/hls/85/index.m3u8
 
-華麗(翡翠)台,http://2022.stream-link.org/live/1684250157
-八度空間,http://2022.stream-link.org/live/1753190198
-翡翠台,http://2022.stream-link.org/live/131217689
-J2,http://2022.stream-link.org/live/1869661640
-無綫新聞台,http://2022.stream-link.org/live/1488149502
-無綫財經·體育·資訊台,http://2022.stream-link.org/live/201000012
-港台电视31,http://2022.stream-link.org/live/7690206
-港台电视32,http://2022.stream-link.org/live/1726901081
-有線新聞台,http://2022.stream-link.org/live/970235901
-有線財經資訊台,http://2022.stream-link.org/live/1757618804
-香港開電視,http://2022.stream-link.org/live/322793772
-香港開電視資訊台,http://2022.stream-link.org/live/237166685
-香港國際財經台,http://2022.stream-link.org/live/1737572864
-鳳凰資訊台,http://2022.stream-link.org/live/1770675188
-鳳凰中文台,http://2022.stream-link.org/live/322460831
-ABC News Australia,http://2022.stream-link.org/live/913166695
-ABC News,http://2022.stream-link.org/live/1465379655
-ANN News,http://2022.stream-link.org/live/1443099587
-Asianet News,http://2022.stream-link.org/live/366568951
-CNA News,http://2022.stream-link.org/live/1603999174
-DW News,http://2022.stream-link.org/live/92833505
-EURO News,http://2022.stream-link.org/live/1059084541
-France 24 English,http://2022.stream-link.org/live/1210415010
-GB News,http://2022.stream-link.org/live/952053531
-Haber Turk,http://2022.stream-link.org/live/407816023
-NBC News,http://2022.stream-link.org/live/1630575726
-SKY News,http://2022.stream-link.org/live/127064321
+華麗(翡翠)台,http://2022.stream-link.org/tv/1245920974
+翡翠台,http://2022.stream-link.org/tv/992054131
+J2,http://2022.stream-link.org/tv/1446008319
+無綫新聞台,http://2022.stream-link.org/tv/797500227
+無綫財經·體育·資訊台,http://2022.stream-link.org/tv/1883767101
+港台电视31,http://2022.stream-link.org/tv/1412822772
+港台电视32,http://2022.stream-link.org/tv/262124223
+有線新聞台,http://2022.stream-link.org/tv/1403047386
+有線財經資訊台,http://2022.stream-link.org/tv/1653781679
+香港開電視,http://2022.stream-link.org/tv/914130259
+香港開電視資訊台,http://2022.stream-link.org/tv/781469440
+香港國際財經台,http://2022.stream-link.org/tv/913715989
+鳳凰資訊台,http://2022.stream-link.org/tv/2084570977
+鳳凰中文台,http://2022.stream-link.org/tv/707750042
+ABC News Australia,http://2022.stream-link.org/tv/173339455
+ABC News,http://2022.stream-link.org/tv/573116716
+ANN News,http://2022.stream-link.org/tv/2598760
+Asianet News,http://2022.stream-link.org/tv/904803719
+BBC News,http://2022.stream-link.org/tv/1980983357
+CNA News,http://2022.stream-link.org/tv/44250289
+CNN Live,http://2022.stream-link.org/tv/466442848
+DW News,http://2022.stream-link.org/tv/29001492
+EURO News,http://2022.stream-link.org/tv/785800675
+France 24 English,http://2022.stream-link.org/tv/1996205982
+GB News,http://2022.stream-link.org/tv/2092154208
+Haber Turk,http://2022.stream-link.org/tv/2077582607
+NBC News,http://2022.stream-link.org/tv/596811646
+SKY News,http://2022.stream-link.org/tv/918685499
 
-
-東森新聞,http://2023.stream-link.org/live/1793825065
-東森財經新聞,http://2023.stream-link.org/live/249006034
-華視新聞,http://2023.stream-link.org/live/215730961
-中天新聞,http://2023.stream-link.org/live/1552993665
-中視新聞,http://2023.stream-link.org/live/926790469
-民視新聞,http://2023.stream-link.org/live/1637144344
-寰宇國際新聞,http://2023.stream-link.org/live/1212532853
-寰宇台灣新聞,http://2023.stream-link.org/live/1932250847
-三立財經新聞,http://2023.stream-link.org/live/172551145
-三立新聞,http://2023.stream-link.org/live/1803236734
-三立新聞+,http://2023.stream-link.org/live/1998094138
-台視新聞,http://2023.stream-link.org/live/966381653
-TVBS新聞,http://2023.stream-link.org/live/401131254
-TVBS財經,http://2023.stream-link.org/live/1711676066
-中天綜合台,http://2023.stream-link.org/live/35397979
-中天亞洲台,http://2023.stream-link.org/live/1096161090
-台視,http://2023.stream-link.org/live/280878870
-天才衝衝衝,http://2023.stream-link.org/live/1311166619
-東森yoyo,http://2023.stream-link.org/live/367293080
+東森新聞,http://2023.stream-link.org/tv/1919365097
+東森財經新聞,http://2023.stream-link.org/tv/203448254
+華視新聞,http://2023.stream-link.org/tv/686953698
+中天新聞,http://2023.stream-link.org/tv/280231259
+中視新聞,http://2023.stream-link.org/tv/389451789
+民視新聞,http://2023.stream-link.org/tv/727114305
+寰宇國際新聞,http://2023.stream-link.org/tv/538334982
+寰宇台灣新聞,http://2023.stream-link.org/tv/1008347635
+三立財經新聞,http://2023.stream-link.org/tv/2011233628
+三立新聞,http://2023.stream-link.org/tv/1698256848
+三立新聞+,http://2023.stream-link.org/tv/728100935
+台視新聞,http://2023.stream-link.org/tv/723728651
+TVBS新聞,http://2023.stream-link.org/tv/2083798658
+TVBS財經,http://2023.stream-link.org/tv/342221541
+中天綜合台,http://2023.stream-link.org/tv/357535870
+中天亞洲台,http://2023.stream-link.org/tv/973103771
+台視,http://2023.stream-link.org/tv/1558743392
+天才衝衝衝,http://2023.stream-link.org/tv/1210311184
+東森yoyo,http://2023.stream-link.org/tv/1099757482
 
 
 广东,#genre#
