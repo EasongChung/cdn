@@ -22,7 +22,7 @@ CGTN紀錄頻道,http://cdn.hkdtmb.com/hls/34/index.m3u8
 HOY TV,http://cdn.hkdtmb.com/hls/77/index.m3u8
 HOY TV 資訊台,http://cdn.hkdtmb.com/hls/78/index.m3u8
 翡翠台,http://cdn.hkdtmb.com/hls/81/index.m3u8
-J2台,http://cdn.hkdtmb.com/hls/82/index.m3u8
+J2,http://cdn.hkdtmb.com/hls/82/index.m3u8
 無綫新聞台,http://cdn.hkdtmb.com/hls/83/index.m3u8
 明珠台,http://cdn.hkdtmb.com/hls/84/index.m3u8
 無綫財經·資訊台,http://cdn.hkdtmb.com/hls/85/index.m3u8
@@ -40,7 +40,7 @@ HOY TV,http://cdn.hkdtmb.com/raw/77.ts
 HOY TV 資訊台,http://cdn.hkdtmb.com/raw/78.ts
 香港國際財經台,http://cdn.hkdtmb.com/raw/76.ts
 翡翠台,http://cdn.hkdtmb.com/raw/81.ts
-J2台,http://cdn.hkdtmb.com/raw/82.ts
+J2,http://cdn.hkdtmb.com/raw/82.ts
 無綫新聞台,http://cdn.hkdtmb.com/raw/83.ts
 明珠台,http://cdn.hkdtmb.com/raw/84.ts
 無綫財經·資訊台,http://cdn.hkdtmb.com/raw/85.ts
@@ -54,13 +54,13 @@ ViuTVSix,http://cdn.hkdtmb.com/raw/96.ts
 龙翔时代,http://120.84.96.87:808/hls/35/index.m3u8
 天映经典GCM,http://120.84.96.87:808/hls/85/index.m3u8
 
-華麗(翡翠)台,http://2022.stream-link.org/tv/1245920974
+翡翠台,http://2022.stream-link.org/tv/1245920974
 翡翠台,http://2022.stream-link.org/tv/992054131
 J2,http://2022.stream-link.org/tv/1446008319
 無綫新聞台,http://2022.stream-link.org/tv/797500227
 無綫財經·體育·資訊台,http://2022.stream-link.org/tv/1883767101
-港台电视31,http://2022.stream-link.org/tv/1412822772
-港台电视32,http://2022.stream-link.org/tv/262124223
+港台電視31,http://2022.stream-link.org/tv/1412822772
+港台電視32,http://2022.stream-link.org/tv/262124223
 有線新聞台,http://2022.stream-link.org/tv/1403047386
 有線財經資訊台,http://2022.stream-link.org/tv/1653781679
 香港開電視,http://2022.stream-link.org/tv/914130259
