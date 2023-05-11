@@ -14,6 +14,24 @@
 香港卫视,http://zhibo.hkstv.tv/livestream/mutfysrq.flv
 俄罗斯中文,http://brics.bonus-tv.ru/cdn/brics/chinese/tracks-v1a1/index.m3u8
 新加坡国际,https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index_4.m3u8
+港台電視31,http://cdn.hkdtmb.com/hls/31/index.m3u8
+港台電視32,http://cdn.hkdtmb.com/hls/32/index.m3u8
+港台電視33,http://cdn.hkdtmb.com/hls/33/index.m3u8
+CGTN紀錄頻道,http://cdn.hkdtmb.com/hls/34/index.m3u8
+香港國際財經台,http://cdn.hkdtmb.com/hls/76/index.m3u8
+HOY TV,http://cdn.hkdtmb.com/hls/77/index.m3u8
+HOY TV 資訊台,http://cdn.hkdtmb.com/hls/78/index.m3u8
+翡翠台,http://cdn.hkdtmb.com/hls/81/index.m3u8
+J2台,http://cdn.hkdtmb.com/hls/82/index.m3u8
+無綫新聞台,http://cdn.hkdtmb.com/hls/83/index.m3u8
+明珠台,http://cdn.hkdtmb.com/hls/84/index.m3u8
+無綫財經·資訊台,http://cdn.hkdtmb.com/hls/85/index.m3u8
+ViuTVSix,http://cdn.hkdtmb.com/hls/96/index.m3u8
+ViuTV,http://cdn.hkdtmb.com/hls/99/index.m3u8
+有線 財經資訊台,http://cdn.hkdtmb.com/hls/108/index.m3u8
+有線 新聞台,http://cdn.hkdtmb.com/hls/109/index.m3u8
+有線 直播新聞台,http://cdn.hkdtmb.com/hls/110/index.m3u8
+Now 新聞台,http://cdn.hkdtmb.com/hls/332/index.m3u8
 港台電視31,http://cdn.hkdtmb.com/raw/31.ts
 港台電視32,http://cdn.hkdtmb.com/raw/32.ts
 港台電視33,http://cdn.hkdtmb.com/raw/33.ts
