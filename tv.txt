@@ -14,6 +14,20 @@
 香港卫视,http://zhibo.hkstv.tv/livestream/mutfysrq.flv
 俄罗斯中文,http://brics.bonus-tv.ru/cdn/brics/chinese/tracks-v1a1/index.m3u8
 新加坡国际,https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index_4.m3u8
+港台電視31,http://cdn.hkdtmb.com/raw/31.ts
+港台電視32,http://cdn.hkdtmb.com/raw/32.ts
+港台電視33,http://cdn.hkdtmb.com/raw/33.ts
+CGTN紀錄頻道,http://cdn.hkdtmb.com/raw/34.ts
+HOY TV,http://cdn.hkdtmb.com/raw/77.ts
+HOY TV 資訊台,http://cdn.hkdtmb.com/raw/78.ts
+香港國際財經台,http://cdn.hkdtmb.com/raw/76.ts
+翡翠台,http://cdn.hkdtmb.com/raw/81.ts
+J2台,http://cdn.hkdtmb.com/raw/82.ts
+無綫新聞台,http://cdn.hkdtmb.com/raw/83.ts
+明珠台,http://cdn.hkdtmb.com/raw/84.ts
+無綫財經·資訊台,http://cdn.hkdtmb.com/raw/85.ts
+ViuTV,http://cdn.hkdtmb.com/raw/99.ts
+ViuTVSix,http://cdn.hkdtmb.com/raw/96.ts
 私人影院,http://119.125.129.118:9901/tsfile/live/1011_1.m3u8
 好莱坞电影,http://120.84.96.87:808/hls/24/index.m3u8
 东森电影高清,http://120.84.96.87:808/hls/32/index.m3u8
