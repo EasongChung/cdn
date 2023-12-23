@@ -10,7 +10,6 @@
 香港卫视,http://zhibo.hkstv.tv/livestream/mutfysrq/playlist.m3u8?wsSession=8ee59707fee3ef96c922e680-167055218938751&wsIPSercert=d24f6d7c9d3646d9533d492d5209384b&wsMonitor=0
 香港卫视,http://zhibo.hkstv.tv/livestream/mutfysrq/playlist.m3u8?wsSession=3c732f93c14e1bc0c07641df-156388849014752&wsIPSercert=8de23d0849e78e3b16ec92a809235421&wsMonitor=0
 香港卫视,http://anren.live/HK/BSJDUFpB.m3u8
-香港電台普通話台,https://rthkaudio6-lh.akamaihd.net/i/radiopth_1@355869/index_56_a-p.m3u8
 香港卫视文旅,https://myun-hw-s3.myun.tv/melj80jz/lxx27bol/1551285536499984128.m3u8
 俄罗斯中文,http://brics.bonus-tv.ru/cdn/brics/chinese/tracks-v1a1/index.m3u8
 新加坡中文台,https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index_4.m3u8?zshijd
@@ -328,12 +327,13 @@ CRI Hit FM FM88.7,http://sk.cri.cn/887.m3u8
 CRI 轻松调频 FM91.5,http://sk.cri.cn/915.m3u8
 CRI NEWS Plus AM846,http://sk.cri.cn/am846.m3u8
 CNR 哈语广播,http://live.xmcdn.com/live/1396/64.m3u8
-cnr经典音乐,http://ngcdn004.cnr.cn/live/dszs/index.m3u8
+CNR 经典音乐,http://ngcdn004.cnr.cn/live/dszs/index.m3u8
 怀集音乐台,http://live.xmcdn.com:80/live/966/64.m3u8
 高清音乐台,http://live.xmcdn.com:80/live/1427/64.m3u8
 清晨音乐台,http://live.xmcdn.com:80/live/1011/64.m3u8
 老歌音乐台,http://live.xmcdn.com:80/live/2628/64.m3u8
 亚洲经典音乐台,http://live.xmcdn.com:80/live/1005/64.m3u8
+香港電台普通話台,https://rthkaudio6-lh.akamaihd.net/i/radiopth_1@355869/index_56_a-p.m3u8
 上海动感101,http://ls.qingting.fm/live/274.m3u8
 厦门音乐广播,http://ls.qingting.fm/live/1739.m3u8
 浙江动听,http://ls.qingting.fm/live/4866.m3u8
