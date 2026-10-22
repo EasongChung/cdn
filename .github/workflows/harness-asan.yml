@@ -60,7 +60,7 @@ jobs:
           cd harness
           gcc -O1 -g -I stubs -I . -o harness-dw \
               harness_dw.c stubs.c guard.c build/req.c build/etnaviv_ml_nn_v7.c \
-              -Wno-unused-function -Wno-unused-variable
+              -Wno-unused-function -Wno-unused-variable -lm
 
       - name: 跑 depthwise 矩阵（真实模型 4 个真实层 + 3 个负控制）
         run: |
@@ -88,7 +88,7 @@ jobs:
           gcc -O1 -g -fsanitize=address,undefined -fno-sanitize-recover=undefined \
               -DNO_FAULT_HANDLER -I stubs -I . -o harness-dw-asan \
               harness_dw.c stubs.c guard.c build/req.c build/etnaviv_ml_nn_v7.c \
-              -Wno-unused-function -Wno-unused-variable
+              -Wno-unused-function -Wno-unused-variable -lm
           echo "=== depthwise ===" ; ASAN_OPTIONS=abort_on_error=1:detect_leaks=0 ./harness-dw-asan 2>&1 | head -40 || true
 
       - uses: actions/upload-artifact@v4
