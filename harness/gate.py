@@ -1,78 +1,100 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""不变式判定：越界只允许出现在 oc % 8 != 0 的形状上；且结论不依赖硬件参数猜测。
+"""不变式判定：越界集合必须**逐字等于** `C % cores_used != 0` 的预测。
 
-输入：harness --sweep 的输出（按 `-- hw ... --` 分块）。
+理论（v7 写入器）：
+    cores_used      = MIN2(output_channels, nn_core_count)
+    kernels_per_core = DIV_ROUND_UP(output_channels, cores_used)
+    幻影通道        = cores_used * kernels_per_core - output_channels
 
-判据：
-  1) 每个 FAIL 的形状名必须能解出 oc，且 oc % 8 != 0        （正/负控制）
-  2) 各 hw 配置的失败集合必须**完全一致**                   （不依赖 accum/zrl 猜测值）
-  3) FAIL 总数 > 0                                          （反作弊：harness 真的跑了）
-退出码 0 = 全部满足。
+    ⇒ 幻影 m > 0  ⇔  C % cores_used != 0
+    ⇒ 当 C < cores 时 cores_used = C ⇒ m = 0（安全）
+
+本脚本对每个 hw 配置独立预测，再与实测失败集合**逐元素比对**。
+这比「所有配置失败集合相同」强得多：它验证的是**机制公式**本身。
+
+反作弊：至少要有 1 个失败；否则说明 harness 没真正跑起来，判 FAIL。
 """
 import re
 import sys
 
 
-def parse(path):
+def parse_cases(path):
+    cases = []
+    for line in open(path, encoding="utf-8"):
+        m = re.match(r'\s*\{"([^"]+)",\s*(\d+),', line)
+        if m:
+            cases.append((m.group(1), int(m.group(2))))
+    return cases
+
+
+def parse_out(path):
     blocks, cur = {}, None
     for line in open(path, encoding="utf-8", errors="replace"):
         m = re.match(r"^-- hw (.+) --\s*$", line)
         if m:
             cur = m.group(1)
-            blocks[cur] = []
+            blocks[cur] = set()
             continue
         m = re.search(r"\bFAIL (\S+)", line)
-        if m and cur:
-            blocks[cur].append(m.group(1))
+        if m and cur is not None:
+            blocks[cur].add(m.group(1))
     return blocks
 
 
-def oc_of(name):
-    m = re.search(r":(\d+)x\d+_k\d+x\d+", name)
-    return int(m.group(1)) if m else None
-
-
-def main(path):
-    blocks = parse(path)
+def main(out_path, cases_path):
+    cases = parse_cases(cases_path)
+    blocks = parse_out(out_path)
+    if not cases:
+        print("FAIL: 解析不到 cases.h 里的形状")
+        return 1
     if not blocks:
-        print("FAIL: 没有解析到任何 hw 配置块（harness 没跑？）")
+        print("FAIL: 解析不到 hw 配置块（harness 没跑？）")
         return 1
 
-    bad, sets = [], {}
-    for hw, fails in blocks.items():
-        sets[hw] = set(fails)
-        for n in fails:
-            oc = oc_of(n)
-            if oc is None:
-                bad.append((hw, n, "形状名无法解析 oc"))
-            elif oc % 8 == 0:
-                bad.append((hw, n, "oc=%d 是 8 的倍数却越界（说明还有别的机制）" % oc))
-        print("hw %-46s 失败 %2d 个" % (hw, len(fails)))
-
-    all_fail = set().union(*sets.values()) if sets else set()
-    print("\n去重后的越界形状 %d 个：" % len(all_fail))
-    for n in sorted(all_fail):
-        print("   %-40s oc=%s  oc%%8=%s" % (n, oc_of(n), (oc_of(n) or 0) % 8))
-
+    print("形状数=%d；hw 配置数=%d" % (len(cases), len(blocks)))
     ok = True
-    if bad:
-        ok = False
-        print("\n[违反判据1]")
-        for hw, n, why in bad:
-            print("   %s | %s | %s" % (hw, n, why))
+    total_fail = 0
 
-    if len({frozenset(s) for s in sets.values()}) != 1:
-        ok = False
-        print("\n[违反判据2] 不同 hw 配置的失败集合不一致")
+    for hw, actual in blocks.items():
+        m = re.search(r"cores=(\d+)", hw)
+        if not m:
+            print("FAIL: 配置块里没有 cores：%s" % hw)
+            return 1
+        cores = int(m.group(1))
 
-    if not all_fail:
-        ok = False
-        print("\n[违反判据3] 一个越界都没有 —— 反作弊检查失败")
+        predicted = {name for name, oc in cases if oc >= cores and oc % cores != 0}
+        total_fail += len(actual)
 
-    print("\n== %s ==" % ("PASS：越界全部命中 oc%8!=0，且不随 hw 参数变化" if ok else "FAIL"))
+        # 预测漏了（实测有、理论无）
+        extra = actual - predicted
+        # 预测多了（理论有、实测无）
+        missing = predicted - actual
+
+        status = "OK" if not extra and not missing else "MISMATCH"
+        print("\nhw %-46s cores=%d  实测=%2d 预测=%2d  %s"
+              % (hw, cores, len(actual), len(predicted), status))
+        for n in sorted(extra):
+            ok = False
+            print("   [理论未预测但实测越界] %s" % n)
+        for n in sorted(missing):
+            ok = False
+            print("   [理论预测越界但实测干净] %s" % n)
+
+    print("\n去重后的越界形状：%d 个" % len(set().union(*blocks.values())))
+    for n in sorted(set().union(*blocks.values())):
+        print("   %s" % n)
+
+    if total_fail == 0:
+        ok = False
+        print("\n[反作弊] 一个越界都没有 —— harness 没跑对")
+
+    print("\n== %s ==" % ("PASS：实测越界集合逐字等于 C % cores_used != 0 的预测" if ok
+                          else "FAIL：实测与机制公式不符"))
     return 0 if ok else 1
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1] if len(sys.argv) > 1 else "out.txt"))
+    o = sys.argv[1] if len(sys.argv) > 1 else "out.txt"
+    c = sys.argv[2] if len(sys.argv) > 2 else "cases.h"
+    sys.exit(main(o, c))

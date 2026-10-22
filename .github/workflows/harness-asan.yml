@@ -35,8 +35,8 @@ jobs:
           echo "harness exit=$?" >> out.txt
           cat out.txt
 
-      - name: 不变式判定
-        run: python3 harness/gate.py harness/out.txt
+      - name: 不变式判定（实测集合必须逐字等于 C % cores_used != 0 的预测）
+        run: python3 harness/gate.py harness/out.txt harness/cases.h
 
       - name: ASan/UBSan 第二遍（采集首个越界的完整栈，仅存档）
         continue-on-error: true
