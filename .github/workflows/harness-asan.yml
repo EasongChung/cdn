@@ -14,9 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 源码指纹（必须 6c1e04aa82fc7501ead299473b2e9674）
-        run: md5sum harness/mesa/etnaviv_ml_nn_v7.c
+      - name: 源码指纹（v7 写入器 6c1e04aa… / nn.c 651ec219…）
+        run: |
+          set -euo pipefail
+          md5sum harness/mesa/etnaviv_ml_nn_v7.c harness/mesa/etnaviv_ml_nn.c
+          test "$(md5sum harness/mesa/etnaviv_ml_nn_v7.c | cut -d' ' -f1)" = "6c1e04aa82fc7501ead299473b2e9674"
+          test "$(md5sum harness/mesa/etnaviv_ml_nn.c    | cut -d' ' -f1)" = "651ec2192b037084418bd8fbb743c4f9"
 
+      # ── 第一遍：系数写入器全矩阵（含幻影通道 OOB） ─────────────────────────
       - name: 构建（守页版，无 sanitizer）
         run: |
           set -euo pipefail
@@ -32,26 +37,64 @@ jobs:
           cd harness
           set +e
           ./harness --sweep > out.txt 2>&1
-          echo "harness exit=$?" >> out.txt
+          echo "harness exit=$?  " >> out.txt
           cat out.txt
 
       - name: 不变式判定（实测集合必须逐字等于 C % cores_used != 0 的预测）
         run: python3 harness/gate.py harness/out.txt harness/cases.h
 
-      - name: ASan/UBSan 第二遍（采集首个越界的完整栈，仅存档）
+      # ── 第二遍：depthwise × per-channel 折叠后态 ────────────────────────────
+      - name: 提取 requantize_weights（函数体 md5 绑定，零改写）
+        run: |
+          set -euo pipefail
+          cd harness
+          python3 extract_funcs.py --src mesa/etnaviv_ml_nn.c --func requantize_weights \
+            --out build/req.c \
+            --signature "void requantize_weights(struct etna_ml_subgraph *subgraph, const struct pipe_ml_operation *poperation, struct etna_operation *operation)" \
+            --includes etnaviv_ml_nn.h,pipe_ml.h \
+            --expect-body-md5 b648d88873bda693860424212471cdf3
+
+      - name: 构建 depthwise 后态探测
+        run: |
+          set -euo pipefail
+          cd harness
+          gcc -O1 -g -I stubs -I . -o harness-dw \
+              harness_dw.c stubs.c guard.c build/req.c build/etnaviv_ml_nn_v7.c \
+              -Wno-unused-function -Wno-unused-variable
+
+      - name: 跑 depthwise 矩阵（真实模型 4 个真实层 + 3 个负控制）
+        run: |
+          cd harness
+          set +e
+          ./harness-dw > dw.txt 2>&1
+          echo "harness-dw exit=$?" >> dw.txt
+          cat dw.txt
+
+      - name: depthwise 判定（dw 案必须越界、控制案必须干净）
+        run: python3 harness/gate_dw.py harness/dw.txt
+
+      # ── sanitizer 复核（仅存档：给首栈，不做判定） ──────────────────────────
+      - name: ASan/UBSan 复核（两遍，首栈）
         continue-on-error: true
         run: |
           set -euo pipefail
           cd harness
-          gcc -O1 -g -fsanitize=address,undefined -fno-sanitize-recover=undefined \
-              -DNO_FAULT_HANDLER -I stubs -I . \
-              -o harness-asan harness.c stubs.c guard.c build/etnaviv_ml_nn_v7.c \
-              -Wno-unused-function -Wno-unused-variable
           ASAN_OPTIONS=abort_on_error=1:detect_leaks=0 UBSAN_OPTIONS=print_stacktrace=1 \
-              ./harness-asan --sweep 2>&1 | head -120 || true
+          gcc -O1 -g -fsanitize=address,undefined -fno-sanitize-recover=undefined \
+              -DNO_FAULT_HANDLER -I stubs -I . -o harness-asan \
+              harness.c stubs.c guard.c build/etnaviv_ml_nn_v7.c \
+              -Wno-unused-function -Wno-unused-variable
+          echo "=== 写入器 ===" ; ASAN_OPTIONS=abort_on_error=1:detect_leaks=0 ./harness-asan --sweep 2>&1 | head -40 || true
+          gcc -O1 -g -fsanitize=address,undefined -fno-sanitize-recover=undefined \
+              -DNO_FAULT_HANDLER -I stubs -I . -o harness-dw-asan \
+              harness_dw.c stubs.c guard.c build/req.c build/etnaviv_ml_nn_v7.c \
+              -Wno-unused-function -Wno-unused-variable
+          echo "=== depthwise ===" ; ASAN_OPTIONS=abort_on_error=1:detect_leaks=0 ./harness-dw-asan 2>&1 | head -40 || true
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: harness-out
-          path: harness/out.txt
+          path: |
+            harness/out.txt
+            harness/dw.txt
