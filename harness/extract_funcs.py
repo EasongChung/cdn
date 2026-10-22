@@ -102,7 +102,7 @@ def main(argv: list[str]) -> int:
         fh.write("/* 自动生成，勿手改 —— extract_funcs.py\n")
         fh.write(" * 来源：%s 第 %d 行  %s()\n" % (args.src, line, args.func))
         fh.write(" * 函数体 md5（逐字节）= %s\n */\n" % md5)
-        fh.write('#include <math.h>\n#include <stdlib.h>\n#include <stdint.h>\n#include <stdbool.h>\n')
+        fh.write('#include <math.h>\n#include <stdlib.h>\n#include <stdint.h>\n#include <stdbool.h>\n#include <float.h>\n')
         fh.write(inc)
         fh.write("%s\n" % args.signature)
         fh.write(body)

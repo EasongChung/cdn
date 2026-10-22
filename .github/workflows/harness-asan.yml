@@ -73,6 +73,27 @@ jobs:
       - name: depthwise 判定（dw 案必须越界、控制案必须干净）
         run: python3 harness/gate_dw.py harness/dw.txt
 
+      # ── 第三遍：fold-early（报告 55 方案 A）守页验证 ─────────────────────────
+      # 与第二遍的区别：第二遍测的是**上游后态**（必须越界），本遍测**修好后的前态**，
+      # 判据是「实测必须逐字等于幻影通道模型的预测」，而不是「全干净」。
+      - name: 构建 fold-early 守页验证（真实源码 + 补丁前后 A/B）
+        run: |
+          set -euo pipefail
+          cd harness
+          FOLD_PATCHER=./patch-etnaviv-perchannel-foldearly.py \
+            sh build_fold.sh mesa/etnaviv_ml_nn.c
+
+      - name: 跑 fold-early 三模式（fe / up / i2）
+        run: |
+          cd harness
+          set +e
+          ./harness-fold > fold.txt 2>&1
+          echo "harness-fold exit=$?" >> fold.txt
+          cat fold.txt
+
+      - name: fold-early 判定（fe 对幻影模型、up 对 fold 缺陷、i2 逐字节）
+        run: python3 harness/gate_fold.py harness/fold.txt
+
       # ── sanitizer 复核（仅存档：给首栈，不做判定） ──────────────────────────
       - name: ASan/UBSan 复核（两遍，首栈）
         continue-on-error: true
@@ -98,3 +119,4 @@ jobs:
           path: |
             harness/out.txt
             harness/dw.txt
+            harness/fold.txt

@@ -9,7 +9,7 @@
 #include <string.h>
 
 static struct etna_core_info g_core;
-static struct etna_screen g_screen = { .info = &g_core };
+static struct etna_screen g_screen = { .info = &g_core, .specs = { .nn_core_version = 7 } };
 static const char *g_case = "?";
 
 void
