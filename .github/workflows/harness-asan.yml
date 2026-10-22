@@ -1,0 +1,57 @@
+name: harness-asan
+
+on:
+  push:
+    branches: [harness-asan]
+    paths:
+      - 'harness/**'
+      - '.github/workflows/harness-asan.yml'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 源码指纹（必须 6c1e04aa82fc7501ead299473b2e9674）
+        run: md5sum harness/mesa/etnaviv_ml_nn_v7.c
+
+      - name: 构建（守页版，无 sanitizer）
+        run: |
+          set -euo pipefail
+          cd harness
+          mkdir -p build
+          cp mesa/etnaviv_ml_nn_v7.c build/
+          gcc -O1 -g -I stubs -I . -o harness \
+              harness.c stubs.c guard.c build/etnaviv_ml_nn_v7.c \
+              -Wno-unused-function -Wno-unused-variable
+
+      - name: 跑完整矩阵（4 套硬件参数 × 31 形状）
+        run: |
+          cd harness
+          set +e
+          ./harness --sweep > out.txt 2>&1
+          echo "harness exit=$?" >> out.txt
+          cat out.txt
+
+      - name: 不变式判定
+        run: python3 harness/gate.py harness/out.txt
+
+      - name: ASan/UBSan 第二遍（采集首个越界的完整栈，仅存档）
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          cd harness
+          gcc -O1 -g -fsanitize=address,undefined -fno-sanitize-recover=undefined \
+              -DNO_FAULT_HANDLER -I stubs -I . \
+              -o harness-asan harness.c stubs.c guard.c build/etnaviv_ml_nn_v7.c \
+              -Wno-unused-function -Wno-unused-variable
+          ASAN_OPTIONS=abort_on_error=1:detect_leaks=0 UBSAN_OPTIONS=print_stacktrace=1 \
+              ./harness-asan --sweep 2>&1 | head -120 || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: harness-out
+          path: harness/out.txt
