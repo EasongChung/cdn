@@ -27,12 +27,21 @@ sys.path.insert(0, os.path.join(REPO, "verify"))
 import tflite_schema as ts  # noqa: E402
 
 
+def opcode_name(m, idx):
+    oc = m.operator_codes[idx]
+    return getattr(oc, "name", None) or str(getattr(oc, "builtin_code", idx))
+
+
 def ops_of(path: str):
     with open(path, "rb") as fh:
         m = ts.parse_model(fh.read(), path)
     sg = m.subgraphs[0]
     for op in sg.operators:
         if len(op.inputs) < 2:
+            continue
+        # ★ 必须按**算子类型**过滤：CONCATENATION / ADD 之类也有 4D 的第二个输入，
+        #   把那种常量张量当权重会造出模型里根本不存在的形状（2026-10-22 修）。
+        if opcode_name(m, op.opcode_index) not in ("CONV_2D", "DEPTHWISE_CONV_2D"):
             continue
         wt = sg.tensors[op.inputs[1]]
         shape = tuple(getattr(wt, "shape", []) or [])
